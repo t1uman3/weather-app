@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.body {
+  background-color: #e7f6ff;
+  border-radius: 18px;
+}
+ .Card {
+   width: 405px;
+   background: #ffffff;
+
+   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+   border-radius: 18px;
+ }
+
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.weather_logo{
+    margin: 15px;
+    width: 70px;
+    height: 70px
+}
+
+
+.greenButton {
+  background: #9dd558;
+  border-radius: 15px;
+  height: 50px;
+  border: 0;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
+  &:hover {
+    background: lighten($color: #b57edc, $amount: 2%);
+  }
+  &:active {
+    background: darken($color: #b57edc, $amount: 5%);
+  }
+}
