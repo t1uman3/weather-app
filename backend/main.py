@@ -28,18 +28,17 @@ def get_weather(city_request: CityRequest):
         "units": "metric"
     }
 
-    response = requests.get(OPENWEATHER_URL, params=req_parameters)
-    if response.status_code == 404:
-        raise HTTPException(status_code=404, detail="City not found")
-    elif response.status_code != 200:
-        raise HTTPException(status_code=response.status_code, detail=response.json())
-    weather_data = response.json()
-
-    return {
-        "city": city,
-        "temperature": weather_data["main"]["temp"],
-        "weather": weather_data["weather"][0]["description"]
-    }
+    try:
+        response = requests.get(OPENWEATHER_URL, params=req_parameters)
+        response.raise_for_status()  # Проверяем статус ответа
+        weather_data = response.json()
+        return {
+            "city": city,
+            "temperature": weather_data["main"]["temp"],
+            "weather": weather_data["weather"][0]["description"]
+        }
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching weather data: {e}")
 
 origins = [
     "http://localhost:5173",
