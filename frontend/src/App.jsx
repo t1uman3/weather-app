@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="body m-4 min-h-screen bg-gray-100 flex flex-col items-center">
         <div className="m-4 flex items-center">
-            <img className="weather_logo m-10"src="./img/weather_logo.png"alt="weather_logo"/>
+            <img className="weather_logo m-10"src="/img/weather_logo.png" alt="weather_logo"/>
             <h1 className=" text-3xl font-bold">Weather App</h1>
         </div>
       <div>
