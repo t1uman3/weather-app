@@ -41,6 +41,7 @@ def get_weather(city_request: CityRequest):
         raise HTTPException(status_code=500, detail=f"Error fetching weather data: {e}")
 
 origins = [
+    "http://localhost:3000"
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
