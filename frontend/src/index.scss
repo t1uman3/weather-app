@@ -51,3 +51,26 @@
     background: darken($color: #b57edc, $amount: 5%);
   }
 }
+
+.redButton {
+  background: darkred;
+  border-radius: 15px;
+  height: 50px;
+  border: 0;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
+  &:hover {
+    background: lighten($color: #b57edc, $amount: 2%);
+  }
+  &:active {
+    background: darken($color: #b57edc, $amount: 5%);
+  }
+}
