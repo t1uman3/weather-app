@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const FavoritesComponent = () => {
+const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
     const [weatherData, setWeatherData] = useState({});
 
@@ -45,17 +45,17 @@ const FavoritesComponent = () => {
     };
 
     return (
-        <div className="m-4 min-h-screen bg-gray-100 flex flex-col items-center">
-
-            <h2 className=" text-3xl font-bold">Weather on Favorite Cities</h2>
-            <button className="greenButton ml-2 px-4 py-2 text-white rounded shadow"
-                    onClick={fetchFavorites}>Show Favorite Cities
-            </button>
-            <div>
+        <div>
+            <div className="m-4 flex items-center">
+                <img className="cursor-pointer size-5" src="/img/liked.svg" alt="favorite"
+                     onClick={fetchFavorites}></img>
+                <h2 className="text-2xl items-center m-5 font-bold">Favorite Cities</h2>
+            </div>
+            <div className="favorites-container flex flex-wrap mr-2">
                 {favorites.map((favCity) => (
-                    <div className="Card mt-4 p-4 bg-white rounded shadow"
+                    <div className="Card mt-2 mr-4 p-4 bg-white rounded shadow"
                          key={favCity.id}>
-                        <h2 className="text-2xl items-center font-bold">{favCity.city}</h2>
+                    <h2 className="text-2xl items-center font-bold">{favCity.city}</h2>
                         {weatherData[favCity.city] && (
                             <div>
                                 <p className="text-lg">Temperature: {weatherData[favCity.city].temperature}°C</p>
@@ -63,11 +63,12 @@ const FavoritesComponent = () => {
                             </div>
 
                         )}
-                     <button
-                            className="redButton px-4 py-2 text-white rounded shadow"
+
+                        <button
+                            className="redButton px-2 py-2 text-white rounded shadow"
                             onClick={() => deleteFavoriteCity(favCity.id)}>
                             Delete
-                     </button>
+                        </button>
                     </div>
                 ))}
             </div>
@@ -75,4 +76,4 @@ const FavoritesComponent = () => {
     );
 };
 
-export default FavoritesComponent;
+export default Favorites;

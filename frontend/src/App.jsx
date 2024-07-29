@@ -1,12 +1,11 @@
 import React from "react";
-import WeatherComponent from "./сomponents/WeatherComponent.jsx";
-import FavoritesComponent from "./сomponents/FavoritesComponent.jsx";
+import Weather from "./сomponents/Weather.jsx";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
     return (
         <div className="App">
-            <WeatherComponent />
-            <FavoritesComponent />
+            <Weather />
         </div>
     );
 }
