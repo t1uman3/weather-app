@@ -3,3 +3,4 @@ requests
 uvicorn
 sqlalchemy
 databases
+dotenv
