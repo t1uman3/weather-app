@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 	"github.com/t1uman3/weather-app/backend-go/model"
@@ -22,39 +23,49 @@ func NewFavoriteHandler(favoriteService *service.FavoriteService) *FavoriteHandl
 // HandleGetFavorites возвращает список избранных городов
 func (h *FavoriteHandler) HandleGetFavorites(c echo.Context) error {
 	favorites := h.favoriteService.GetFavorites()
-	return c.JSON(http.StatusOK, model.FavoritesList{
-		Favorites: favorites,
-	})
+	return c.JSON(http.StatusOK, favorites)
 }
 
 // HandleAddFavorite добавляет город в избранное
 func (h *FavoriteHandler) HandleAddFavorite(c echo.Context) error {
-	var favorite model.Favorite
-	if err := c.Bind(&favorite); err != nil {
+	var request struct {
+		City string `json:"city"`
+	}
+
+	if err := c.Bind(&request); err != nil {
 		return c.JSON(http.StatusBadRequest, model.ErrorResponse{
 			Error: "Неверный формат запроса",
 		})
 	}
 
-	if favorite.City == "" {
+	if request.City == "" {
 		return c.JSON(http.StatusBadRequest, model.ErrorResponse{
 			Error: "Название города не может быть пустым",
 		})
 	}
 
-	h.favoriteService.AddFavorite(favorite.City)
-	return c.JSON(http.StatusOK, map[string]bool{"success": true})
+	favorite := h.favoriteService.AddFavorite(request.City)
+	return c.JSON(http.StatusOK, favorite)
 }
 
 // HandleRemoveFavorite удаляет город из избранного
 func (h *FavoriteHandler) HandleRemoveFavorite(c echo.Context) error {
-	city := c.Param("city")
-	if city == "" {
+	cityIDStr := c.Param("city")
+	cityID, err := strconv.Atoi(cityIDStr)
+	if err != nil {
 		return c.JSON(http.StatusBadRequest, model.ErrorResponse{
-			Error: "Название города не может быть пустым",
+			Error: "Некорректный ID города",
 		})
 	}
 
-	h.favoriteService.RemoveFavorite(city)
-	return c.JSON(http.StatusOK, map[string]bool{"success": true})
+	success := h.favoriteService.RemoveFavorite(cityID)
+	if !success {
+		return c.JSON(http.StatusNotFound, model.ErrorResponse{
+			Error: "Город не найден",
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"detail": "City deleted",
+	})
 }

@@ -2,11 +2,12 @@
 
 # Weather App
 
+This project uses Go backend (Echo framework) and React frontend.
+
 To start the project you need
 - running Docker
 - use a terminal that supports Unix commands such as Git Bash
-- replace your OpenWeather API key in the file .env and rename file
-
+- create `.env` file with your OpenWeather API key
 
 ## Run Locally
 
@@ -28,9 +29,39 @@ Make the script executable
   chmod +x deploy.sh
 ```
 
-Start
+Create `.env` file in the root directory with your OpenWeather API key:
+
+```
+WEATHER_API_KEY=your_openweather_api_key_here
+PORT=8000
+```
+
+Start the application:
 
 ```bash
   ./deploy.sh
 ```
 
+## Go Backend 
+
+The project uses Go with the Echo framework for the backend. The structure is:
+
+- `api/` - HTTP request handlers
+  - `weather.go` - weather handlers
+  - `favorite.go` - favorite cities handlers
+- `model/` - data models 
+  - `weather.go` - weather data model
+  - `favorite.go` - favorite cities model
+- `service/` - business logic
+  - `weather.go` - weather service for API requests
+  - `favorite.go` - favorite cities service
+- `cmd/` - application entry point
+  - `main.go` - main application file
+
+## API Endpoints
+
+- `GET /` - server health check
+- `POST /weather` - get weather data for a city
+- `GET /favorites` - get list of favorite cities
+- `POST /favorite` - add a city to favorites
+- `DELETE /favorite/:id` - remove a city from favorites

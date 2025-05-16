@@ -1,25 +1,32 @@
-# Используем официальный образ Node
-FROM node:16 AS build
+# Используем официальный образ Node с поддержкой Alpine Linux
+FROM node:18-alpine AS build
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файл package.json и package-lock.json
+# Копируем файлы для установки зависимостей
 COPY package*.json ./
 
-# Устанавливаем зависимости системы
-RUN npm install
+# Устанавливаем зависимости с кэшированием
+RUN npm ci --silent
 
 # Копируем остальные файлы проекта
 COPY . .
 
-# Запускаем проект
+# Собираем проект
 RUN npm run build
 
-FROM nginx:alpine
+# Этап production с Nginx
+FROM nginx:stable-alpine
 
+# Копируем конфигурацию Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Копируем собранные файлы из этапа сборки
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 3000
+# Открываем порт
+EXPOSE 80
 
+# Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"]

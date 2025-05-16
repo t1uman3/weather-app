@@ -1,9 +1,10 @@
 package model
 
 type Favorite struct {
+	ID   int    `json:"id"`
 	City string `json:"city"`
 }
 
 type FavoritesList struct {
-	Favorites []string `json:"favorites"`
+	Favorites []Favorite `json:"favorites,omitempty"`
 }
