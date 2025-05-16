@@ -1,0 +1,182 @@
+/* Favorites Component Styles */
+.favorites-container {
+    margin-top: 1.5rem;
+    background-color: #1e1e1e;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.favorites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.favorites-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #e0e0e0;
+}
+
+.refresh-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(74, 144, 226, 0.2);
+    color: #4a90e2;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.refresh-button:hover {
+    background-color: rgba(74, 144, 226, 0.3);
+}
+
+.refresh-button:disabled {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+}
+
+.refresh-button span {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.refresh-button span.loading {
+    animation: spin 1s linear infinite;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.favorite-card {
+    background-color: #2a2a2a;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.favorite-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.favorite-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    border-bottom: 1px solid #444;
+}
+
+.favorite-card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+.delete-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: #ff6b6b;
+    transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+    background-color: rgba(229, 57, 53, 0.2);
+}
+
+.favorite-card-body {
+    padding: 1rem;
+}
+
+.favorite-temp {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.favorite-description {
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 0.75rem;
+    text-transform: capitalize;
+}
+
+.favorite-detail {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #9e9e9e;
+}
+
+.favorite-card-loading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    color: #9e9e9e;
+    font-size: 0.9rem;
+}
+
+.no-favorites {
+    padding: 2rem;
+    text-align: center;
+    color: #9e9e9e;
+}
+
+.no-favorites p {
+    margin: 0.5rem 0;
+}
+
+.loading-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 1rem;
+    }
+    
+    .favorites-header {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+} 

@@ -1,0 +1,107 @@
+/* App-wide styles */
+:root {
+  --primary-color: #4a90e2;
+  --text-color: #e0e0e0;
+  --light-gray: #202020;
+  --border-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: #1a1a1a;
+  box-shadow: 0 1px 4px var(--shadow-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-container h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.weather-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  filter: brightness(0) invert(1);
+}
+
+.app-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-footer {
+  background-color: #1a1a1a;
+  border-top: 1px solid var(--border-color);
+  padding: 1.5rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 1.5rem;
+  }
+  
+  .logo-container {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .logo-container h1 {
+    font-size: 1.3rem;
+  }
+  
+  .weather-logo {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-content {
+    padding: 1rem;
+  }
+  
+  .logo-container {
+    padding: 0.75rem 1rem;
+  }
+} 

@@ -3,20 +3,22 @@ networks:
 
 services:
   backend:
-    build: ./backend
+    build: ./backend-go
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend:/app
     env_file:
-      - ./backend/.env
+      - ./.env
     networks:
       dev:
+        aliases:
+          - backend
 
   frontend:
     build: ./frontend
     ports:
       - "3000:80"
+    depends_on:
+      - backend
     volumes:
       - ./frontend:/app
     networks:
