@@ -7,7 +7,7 @@ function App() {
         <div className="app-container">
             <header className="app-header">
                 <div className="logo-container">
-                    <img className="weather-logo" src="/img/weather_logo.png" alt="Weather App Logo"/>
+                    <img className="weather-logo" src="/weather-app/img/weather_logo.png" alt="Weather App Logo"/>
                     <h1>Weather App</h1>
                 </div>
             </header>
