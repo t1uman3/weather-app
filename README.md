@@ -4,6 +4,8 @@
 
 This project uses Go backend (Echo framework) and React frontend.
 
+Live demo: [Weather App](https://t1uman3.github.io/weather-app)
+
 To start the project you need
 - running Docker
 - use a terminal that supports Unix commands such as Git Bash
@@ -41,6 +43,19 @@ Start the application:
 ```bash
   ./deploy.sh
 ```
+
+## Deployment
+
+The frontend is deployed to GitHub Pages. To deploy:
+
+1. Make sure you have the latest changes committed
+2. Run the deployment command:
+```bash
+cd frontend
+npm run deploy
+```
+
+This will build the project and deploy it to the `gh-pages` branch.
 
 ## Go Backend 
 
